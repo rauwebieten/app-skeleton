@@ -3,6 +3,7 @@
 
 namespace App;
 
+use App\Http\Controller\Homepage;
 use DI\Bridge\Slim\CallableResolver;
 use DI\Bridge\Slim\ControllerInvoker;
 use DI\Container;
@@ -19,6 +20,7 @@ use Slim\Http\Response;
 use function DI\autowire;
 use function DI\create;
 use function DI\get;
+use Slim\Views\Twig;
 
 class DI
 {
@@ -83,7 +85,15 @@ class DI
             'callableResolver' => autowire(CallableResolver::class),
 
             // slim app
-            App::class => factory([App::class,'factory'])
+            App::class => factory([App::class,'factory']),
+
+            // twig / twig-view for slim app
+            Twig::class => autowire()
+                ->constructor(__DIR__.'/../../resources/templates'),
+
+            // controller classes
+            Homepage::class => autowire(),
+            'App\Http\Controller\*' => create('App\Http\Controller\*'),
         ];
     }
 }

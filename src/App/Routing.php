@@ -3,13 +3,12 @@
 
 namespace App;
 
+use App\Http\Controller\Homepage;
 
 class Routing
 {
     public function setRoutes(App $app)
     {
-        $app->get('/', function() {
-            echo 'ok';
-        });
+        $app->get('/', Homepage::class);
     }
 }
