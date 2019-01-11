@@ -1,0 +1,24 @@
+{
+    "name": "rauwebieten/app-skeleton",
+    "license": "proprietary",
+    "description": "A Skeleton using Slim PHP and PHP-DI",
+    "type": "project",
+    "authors": [
+        {
+            "name": "rauwebieten",
+            "email": "rauwe.bieten@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.11",
+        "slim/twig-view": "^2.4",
+        "php-di/php-di": "^6.0",
+        "php-di/slim-bridge": "^2.0",
+        "doctrine/annotations": "^1.6",
+        "symfony/console": "^4.2",
+        "twig/twig": "^2.6"
+    },
+    "require-dev": {
+        "filp/whoops": "^2.3"
+    }
+}
