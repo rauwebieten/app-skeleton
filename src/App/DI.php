@@ -6,11 +6,13 @@ use App\Http\Controller\Homepage;
 use DI\Bridge\Slim\CallableResolver;
 use DI\Bridge\Slim\ControllerInvoker;
 use DI\Container;
+use function DI\string;
 use Invoker\Invoker;
 use Invoker\ParameterResolver\AssociativeArrayResolver;
 use Invoker\ParameterResolver\Container\TypeHintContainerResolver;
 use Invoker\ParameterResolver\DefaultValueResolver;
 use Invoker\ParameterResolver\ResolverChain;
+use Noodlehaus\Config;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Headers;
 use Slim\Http\Request;
@@ -83,8 +85,12 @@ class DI
 
             'callableResolver' => autowire(CallableResolver::class),
 
-            // path
-            'application.path' => 'C:\Users\Peter\PhpstormProjects\app-skeleton',
+            // path, inserted by bootstrap
+            'application.path' => '',
+
+            // config
+            Config::class => autowire()
+                ->constructor(string('{application.path}/config')),
 
             // slim app
             App::class => factory([App::class, 'factory']),

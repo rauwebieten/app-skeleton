@@ -3,6 +3,7 @@
 namespace App;
 
 use DI\Annotation\Inject;
+use Noodlehaus\Config;
 use Slim\Router;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
@@ -21,6 +22,12 @@ class TwigFactory
      */
     private $applicationPath;
 
+    /**
+     * @Inject()
+     * @var Config
+     */
+    private $config;
+
     public function __invoke()
     {
         $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
@@ -32,6 +39,8 @@ class TwigFactory
             'auto_reload' => true,
         ]);
         $view->addExtension($extension);
+
+        $view->getEnvironment()->addGlobal('applicationName', $this->config->get('application.name'));
 
         return $view;
     }
