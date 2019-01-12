@@ -26,7 +26,7 @@ class TwigFactory
         $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
         $extension = new TwigExtension($this->router, $uri);
 
-        $templatePath = __DIR__ . '/../../resources/templates';
+        $templatePath = $this->applicationPath . '/resources/templates';
         $view = new Twig($templatePath,[
             'cache' => $this->applicationPath.'/storage/cache/twig',
             'auto_reload' => true,
