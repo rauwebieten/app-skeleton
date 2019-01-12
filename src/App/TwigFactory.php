@@ -41,6 +41,7 @@ class TwigFactory
         $view->addExtension($extension);
 
         $view->getEnvironment()->addGlobal('applicationName', $this->config->get('application.name'));
+        $view->getEnvironment()->addGlobal('applicationContactEmail', $this->config->get('application.contact_email'));
 
         return $view;
     }

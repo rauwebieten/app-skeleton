@@ -2,6 +2,7 @@
 
 return [
     'application' => [
-        'name' => 'App skeleton'
+        'name' => 'App skeleton',
+        'contact_email' => 'info@example.com'
     ]
 ];

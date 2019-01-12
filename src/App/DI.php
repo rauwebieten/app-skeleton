@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Handlers\NotFoundHandler;
 use App\Http\Controller\Homepage;
 use DI\Bridge\Slim\CallableResolver;
 use DI\Bridge\Slim\ControllerInvoker;
@@ -57,7 +58,7 @@ class DI
                 ->constructor(get('settings.displayErrorDetails')),
             'phpErrorHandler' => create(\Slim\Handlers\PhpError::class)
                 ->constructor(get('settings.displayErrorDetails')),
-            'notFoundHandler' => create(\Slim\Handlers\NotFound::class),
+            //'notFoundHandler' => create(\Slim\Handlers\NotFound::class),
             'notAllowedHandler' => create(\Slim\Handlers\NotAllowed::class),
             'environment' => function () {
                 return new \Slim\Http\Environment($_SERVER);
@@ -105,6 +106,9 @@ class DI
 
             // logger
             LoggerInterface::class => factory(LoggerFactory::class),
+
+            // overwrite slim error handlers
+            'notFoundHandler' => autowire(NotFoundHandler::class)
         ];
     }
 }

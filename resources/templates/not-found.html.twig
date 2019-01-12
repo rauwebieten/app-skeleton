@@ -1,0 +1,25 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% set pageTitle = 'Not found' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3 text-center mt-lg-5">
+                <h1>Page not found</h1>
+
+                <p>
+                    The link you clicked may be broken or<br>
+                    the page may have been removed
+                </p>
+
+                <p>
+                    Visit the <a href="/">homepage</a>
+                    or <a href="mailto:{{ applicationContactEmail }}">contact us</a> about the problem.
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
