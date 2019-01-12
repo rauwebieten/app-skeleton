@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App;
 
 use App\Http\Controller\Homepage;

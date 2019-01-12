@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Http\Controller;
 
 use DI\Annotation\Inject;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
-
 
 class Documentation
 {

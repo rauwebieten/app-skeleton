@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App;
 
 use App\Http\Controller\Homepage;
 use DI\Bridge\Slim\CallableResolver;
 use DI\Bridge\Slim\ControllerInvoker;
 use DI\Container;
-use function DI\factory;
 use Invoker\Invoker;
 use Invoker\ParameterResolver\AssociativeArrayResolver;
 use Invoker\ParameterResolver\Container\TypeHintContainerResolver;
@@ -17,11 +15,11 @@ use Psr\Container\ContainerInterface;
 use Slim\Http\Headers;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\Twig;
 use function DI\autowire;
 use function DI\create;
+use function DI\factory;
 use function DI\get;
-use Slim\Views\Twig;
-use Slim\Views\TwigExtension;
 
 class DI
 {
@@ -86,7 +84,7 @@ class DI
             'callableResolver' => autowire(CallableResolver::class),
 
             // slim app
-            App::class => factory([App::class,'factory']),
+            App::class => factory([App::class, 'factory']),
 
             // twig / twig-view for slim app
             Twig::class => factory(TwigFactory::class),

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App;
-
 
 use DI\Annotation\Inject;
 use Slim\Router;
@@ -22,7 +20,7 @@ class TwigFactory
         $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
         $extension = new TwigExtension($this->router, $uri);
 
-        $templatePath = __DIR__.'/../../resources/templates';
+        $templatePath = __DIR__ . '/../../resources/templates';
         $view = new Twig($templatePath);
         $view->addExtension($extension);
 
