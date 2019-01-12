@@ -12,16 +12,6 @@ class Bootstrap
     private $applicationPath;
 
     /**
-     * @param $applicationPath
-     * @return Bootstrap
-     * @throws \Exception
-     */
-    public static function create($applicationPath): self
-    {
-        return new self($applicationPath);
-    }
-
-    /**
      * Bootstrap constructor.
      * @param $applicationPath
      * @throws \Exception
@@ -32,16 +22,6 @@ class Bootstrap
         $this
             ->loadEnv()
             ->buildContainer();
-    }
-
-    /**
-     * @return Bootstrap
-     */
-    private function loadEnv(): self
-    {
-        $env = Dotenv::create($this->applicationPath);
-        $env->load();
-        return $this;
     }
 
     /**
@@ -61,6 +41,26 @@ class Bootstrap
         $this->container = $builder->build();
         $this->container->set('application.path', $this->applicationPath);
         return $this;
+    }
+
+    /**
+     * @return Bootstrap
+     */
+    private function loadEnv(): self
+    {
+        $env = Dotenv::create($this->applicationPath);
+        $env->load();
+        return $this;
+    }
+
+    /**
+     * @param $applicationPath
+     * @return Bootstrap
+     * @throws \Exception
+     */
+    public static function create($applicationPath): self
+    {
+        return new self($applicationPath);
     }
 
     /**

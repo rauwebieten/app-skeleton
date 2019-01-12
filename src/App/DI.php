@@ -6,7 +6,6 @@ use App\Http\Controller\Homepage;
 use DI\Bridge\Slim\CallableResolver;
 use DI\Bridge\Slim\ControllerInvoker;
 use DI\Container;
-use function DI\string;
 use Invoker\Invoker;
 use Invoker\ParameterResolver\AssociativeArrayResolver;
 use Invoker\ParameterResolver\Container\TypeHintContainerResolver;
@@ -14,6 +13,7 @@ use Invoker\ParameterResolver\DefaultValueResolver;
 use Invoker\ParameterResolver\ResolverChain;
 use Noodlehaus\Config;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 use Slim\Http\Headers;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -22,6 +22,7 @@ use function DI\autowire;
 use function DI\create;
 use function DI\factory;
 use function DI\get;
+use function DI\string;
 
 class DI
 {
@@ -101,6 +102,9 @@ class DI
             // controller classes
             Homepage::class => autowire(),
             'App\Http\Controller\*' => create('App\Http\Controller\*'),
+
+            // logger
+            LoggerInterface::class => factory(LoggerFactory::class),
         ];
     }
 }

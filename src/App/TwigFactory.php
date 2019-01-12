@@ -34,8 +34,8 @@ class TwigFactory
         $extension = new TwigExtension($this->router, $uri);
 
         $templatePath = $this->applicationPath . '/resources/templates';
-        $view = new Twig($templatePath,[
-            'cache' => $this->applicationPath.'/storage/cache/twig',
+        $view = new Twig($templatePath, [
+            'cache' => $this->applicationPath . '/storage/cache/twig',
             'auto_reload' => true,
         ]);
         $view->addExtension($extension);
