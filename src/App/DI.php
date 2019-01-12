@@ -21,6 +21,7 @@ use function DI\autowire;
 use function DI\create;
 use function DI\get;
 use Slim\Views\Twig;
+use Slim\Views\TwigExtension;
 
 class DI
 {
@@ -88,8 +89,7 @@ class DI
             App::class => factory([App::class,'factory']),
 
             // twig / twig-view for slim app
-            Twig::class => autowire()
-                ->constructor(__DIR__.'/../../resources/templates'),
+            Twig::class => factory(TwigFactory::class),
 
             // controller classes
             Homepage::class => autowire(),
