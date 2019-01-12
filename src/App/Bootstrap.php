@@ -48,8 +48,9 @@ class Bootstrap
      */
     private function loadEnv(): self
     {
-        $env = Dotenv::create($this->applicationPath);
-        $env->load();
+        $dotenv = Dotenv::create($this->applicationPath);
+        $dotenv->load();
+        $dotenv->required('DEBUG')->isBoolean();
         return $this;
     }
 

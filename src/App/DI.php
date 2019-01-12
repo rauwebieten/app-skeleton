@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Handlers\ErrorHandler;
 use App\Handlers\NotFoundHandler;
+use App\Handlers\PhpErrorHandler;
 use App\Http\Controller\Homepage;
 use DI\Bridge\Slim\CallableResolver;
 use DI\Bridge\Slim\ControllerInvoker;
@@ -24,6 +26,10 @@ use function DI\create;
 use function DI\factory;
 use function DI\get;
 use function DI\string;
+use Whoops\Handler\JsonResponseHandler;
+use Whoops\Handler\PlainTextHandler;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
 
 class DI
 {
@@ -54,10 +60,10 @@ class DI
                 ->method('setContainer', get(Container::class))
                 ->method('setCacheFile', get('settings.routerCacheFile')),
             \Slim\Router::class => get('router'),
-            'errorHandler' => create(\Slim\Handlers\Error::class)
-                ->constructor(get('settings.displayErrorDetails')),
-            'phpErrorHandler' => create(\Slim\Handlers\PhpError::class)
-                ->constructor(get('settings.displayErrorDetails')),
+            //'errorHandler' => create(\Slim\Handlers\Error::class)
+            //    ->constructor(get('settings.displayErrorDetails')),
+            //'phpErrorHandler' => create(\Slim\Handlers\PhpError::class)
+            //    ->constructor(get('settings.displayErrorDetails')),
             //'notFoundHandler' => create(\Slim\Handlers\NotFound::class),
             'notAllowedHandler' => create(\Slim\Handlers\NotAllowed::class),
             'environment' => function () {
@@ -108,7 +114,15 @@ class DI
             LoggerInterface::class => factory(LoggerFactory::class),
 
             // overwrite slim error handlers
-            'notFoundHandler' => autowire(NotFoundHandler::class)
+            'notFoundHandler' => autowire(NotFoundHandler::class),
+            'errorHandler' => autowire(ErrorHandler::class),
+            'phpErrorHandler' => autowire(PhpErrorHandler::class),
+
+            // whoops error handler
+            Run::class => autowire(Run::class)
+                ->method('pushHandler', create(PlainTextHandler::class))
+                ->method('pushHandler', create(JsonResponseHandler::class))
+                ->method('pushHandler', create(PrettyPageHandler::class)),
         ];
     }
 }
