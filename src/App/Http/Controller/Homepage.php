@@ -24,7 +24,7 @@ class Homepage
 
     public function __invoke(Request $request, Response $response)
     {
-        $this->logger->error('ok ok');
+        $this->logger->info('ok ok');
         return $this->view->render($response, 'homepage.html.twig');
     }
 }
