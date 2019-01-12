@@ -83,6 +83,9 @@ class DI
 
             'callableResolver' => autowire(CallableResolver::class),
 
+            // path
+            'application.path' => 'C:\Users\Peter\PhpstormProjects\app-skeleton',
+
             // slim app
             App::class => factory([App::class, 'factory']),
 
