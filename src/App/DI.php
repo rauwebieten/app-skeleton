@@ -44,7 +44,7 @@ class DI
             'settings.determineRouteBeforeAppMiddleware' => true,
             'settings.displayErrorDetails' => true,
             'settings.addContentLengthHeader' => true,
-            'settings.routerCacheFile' => false,
+            'settings.routerCacheFile' => string('{application.path}/storage/cache/slim/router.cache.php'),
 
             'settings' => [
                 'httpVersion' => get('settings.httpVersion'),

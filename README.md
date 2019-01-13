@@ -13,6 +13,9 @@ My skeleton for a web application.
 ## Installation
 
 ```
+//  create project from skeleton
+composer create-project rauwebieten/app-skeleton my-app
+
 // install dependencies
 composer install
 
