@@ -5,6 +5,7 @@ namespace App;
 use App\Handlers\ErrorHandler;
 use App\Handlers\NotFoundHandler;
 use App\Handlers\PhpErrorHandler;
+use App\Http\Controller\Documentation;
 use App\Http\Controller\Homepage;
 use DI\Bridge\Slim\CallableResolver;
 use DI\Bridge\Slim\ControllerInvoker;
@@ -108,7 +109,7 @@ class DI
 
             // controller classes
             Homepage::class => autowire(),
-            'App\Http\Controller\*' => create('App\Http\Controller\*'),
+            Documentation::class => autowire(),
 
             // logger
             LoggerInterface::class => factory(LoggerFactory::class),
