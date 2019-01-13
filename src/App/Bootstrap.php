@@ -30,12 +30,18 @@ class Bootstrap
      */
     private function buildContainer(): self
     {
+        $debug = filter_var(getenv('DEBUG'), FILTER_VALIDATE_BOOLEAN);
+
         $builder = new ContainerBuilder();
         $builder->useAnnotations(true);
         $builder->useAutowiring(true);
 
-        // add definitions
-        $builder->addDefinitions((new DI())->getConfig());
+        // add app definitions
+        $builder->addDefinitions($this->applicationPath.'/vendor/php-di/slim-bridge/src/config.php');
+        $builder->addDefinitions($this->applicationPath.'/config/di-production.php');
+        if ($debug) {
+            $builder->addDefinitions($this->applicationPath.'/config/di-development.php');
+        }
 
         // build the container
         $this->container = $builder->build();

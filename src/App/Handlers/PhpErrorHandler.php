@@ -31,7 +31,7 @@ class PhpErrorHandler
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, \Throwable $error)
     {
-        $debug = getenv('DEBUG') === 'true';
+        $debug = filter_var(getenv('DEBUG'), FILTER_VALIDATE_BOOLEAN);
 
         $this->logger->error($error->__toString());
 
