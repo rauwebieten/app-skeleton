@@ -9,10 +9,11 @@ use App\Handlers\PhpErrorHandler;
 use App\Http\Controller\Documentation;
 use App\Http\Controller\Homepage;
 use App\LoggerFactory;
-use App\TwigFactory;
 use Noodlehaus\Config;
 use Psr\Log\LoggerInterface;
+use Slim\Http\Uri;
 use Slim\Views\Twig;
+use Slim\Views\TwigExtension;
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PlainTextHandler;
 use Whoops\Handler\PrettyPageHandler;
@@ -20,6 +21,7 @@ use Whoops\Run;
 use function DI\autowire;
 use function DI\create;
 use function DI\factory;
+use function DI\get;
 use function DI\string;
 
 return [
@@ -38,7 +40,22 @@ return [
     App::class => factory([App::class, 'factory']),
 
     // twig / twig-view for slim app
-    Twig::class => factory(TwigFactory::class),
+
+    'uri' => factory([Uri::class, 'createFromEnvironment'])
+        ->parameter(0, get('environment')),
+
+    TwigExtension::class => autowire()
+        ->constructor(get('router'), get('uri')),
+
+    Twig::class => autowire()
+        ->constructor(
+            string('{application.path}/resources/templates'),
+            [
+                'debug' => false,
+                'cache' => string('{application.path}/storage/cache/twig'),
+                'auto_reload' => false,
+            ])
+        ->method('addExtension', get(TwigExtension::class)),
 
     // controller classes
     Homepage::class => autowire(),

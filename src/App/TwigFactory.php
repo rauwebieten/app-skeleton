@@ -24,6 +24,8 @@ class TwigFactory
 
     public function __invoke()
     {
+        throw new \Exception("do not use");
+
         $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
         $extension = new TwigExtension($this->router, $uri);
 
