@@ -3,6 +3,7 @@
 namespace resources\di;
 
 use App\DebugBarFactory;
+use App\Twig\StringyExtension;
 use function DI\autowire;
 use function DI\create;
 use function DI\factory;
@@ -34,5 +35,6 @@ return [
             ])
         ->method('addExtension', get(TwigExtension::class))
         ->method('addExtension', get(\Twig_Extension_Profiler::class))
-        ->method('addExtension', create(\Twig_Extension_Debug::class)),
+        ->method('addExtension', create(\Twig_Extension_Debug::class))
+        ->method('addExtension', get(StringyExtension::class)),
 ];
