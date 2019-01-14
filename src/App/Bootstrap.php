@@ -5,6 +5,7 @@ namespace App;
 use DI\Container;
 use DI\ContainerBuilder;
 use Dotenv\Dotenv;
+use Tracy\Debugger;
 
 class Bootstrap
 {
@@ -46,6 +47,11 @@ class Bootstrap
         // build the container
         $this->container = $builder->build();
         $this->container->set('application.path', $this->applicationPath);
+
+        if ($this->container->has('debug_bar_factory')) {
+            $this->container->get('debug_bar_factory');
+        }
+
         return $this;
     }
 

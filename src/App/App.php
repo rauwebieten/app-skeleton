@@ -3,6 +3,9 @@
 namespace App;
 
 use Psr\Container\ContainerInterface;
+use RunTracy\Middlewares\TracyMiddleware;
+use Tracy\Debugger;
+use Tracy\OutputDebugger;
 
 class App extends \Slim\App
 {
@@ -10,6 +13,7 @@ class App extends \Slim\App
     {
         $app = new self($container);
         $app->loadRoutes();
+
         return $app;
     }
 

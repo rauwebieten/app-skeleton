@@ -1,6 +1,6 @@
 <?php
 
-namespace config;
+namespace resources\di;
 
 use App\App;
 use App\Handlers\ErrorHandler;
