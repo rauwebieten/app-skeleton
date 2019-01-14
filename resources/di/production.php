@@ -32,7 +32,7 @@ return [
 
     // config
     Config::class => autowire()
-        ->constructor(string('{application.path}/config')),
+        ->constructor(string('{application.path}/resources/config')),
 
     // slim app
     App::class => factory([App::class, 'factory']),

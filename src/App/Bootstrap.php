@@ -38,9 +38,9 @@ class Bootstrap
 
         // add app definitions
         $builder->addDefinitions($this->applicationPath.'/vendor/php-di/slim-bridge/src/config.php');
-        $builder->addDefinitions($this->applicationPath.'/config/di-production.php');
+        $builder->addDefinitions($this->applicationPath.'/resources/di/production.php');
         if ($debug) {
-            $builder->addDefinitions($this->applicationPath.'/config/di-development.php');
+            $builder->addDefinitions($this->applicationPath.'/resources/di/development.php');
         }
 
         // build the container
