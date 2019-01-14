@@ -3,14 +3,14 @@
 namespace resources\di;
 
 use App\DebugBarFactory;
-use App\Twig\StringyExtension;
+use RauweBieten\TwigStringyExtension;
+use Slim\Views\Twig;
+use Slim\Views\TwigExtension;
 use function DI\autowire;
 use function DI\create;
 use function DI\factory;
 use function DI\get;
 use function DI\string;
-use Slim\Views\Twig;
-use Slim\Views\TwigExtension;
 
 return [
     // override slim settings
@@ -36,5 +36,5 @@ return [
         ->method('addExtension', get(TwigExtension::class))
         ->method('addExtension', get(\Twig_Extension_Profiler::class))
         ->method('addExtension', create(\Twig_Extension_Debug::class))
-        ->method('addExtension', get(StringyExtension::class)),
+        ->method('addExtension', get(TwigStringyExtension::class)),
 ];

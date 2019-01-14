@@ -28,10 +28,10 @@
                     <a href="/">home</a>
                     <a href="{{ path_for('documentation') }}">documentation</a>
                 </p>
+                <h2>Stringy tests</h2>
                 <p>
-                    Stringy test: <br>
-                    Ντανιλ => {{ 'Ντανιλ'|stringy_swap_case }} <br>
-                    Ντανιλ => {{ 'Ντανιλ'|stringy_shuffle }} <br>
+                    Ντανιλ => stringy_swap_case => {{ 'Ντανιλ'|stringy_swap_case }} <br>
+                    Ντανιλ => stringy_shuffle => {{ 'Ντανιλ'|stringy_shuffle }} <br>
                 </p>
             </div>
         </div>

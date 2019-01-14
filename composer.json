@@ -24,7 +24,8 @@
     "filp/whoops": "^2.3",
     "league/flysystem": "^1.0",
     "runcmf/runtracy": "^0.2.10",
-    "danielstjules/stringy": "^3.1"
+    "danielstjules/stringy": "^3.1",
+    "rauwebieten/twig-stringy-extension": "^1.0"
   },
   "require-dev": {
   },

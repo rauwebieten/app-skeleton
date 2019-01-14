@@ -9,9 +9,9 @@ use App\Handlers\PhpErrorHandler;
 use App\Http\Controller\Documentation;
 use App\Http\Controller\Homepage;
 use App\LoggerFactory;
-use App\Twig\StringyExtension;
 use Noodlehaus\Config;
 use Psr\Log\LoggerInterface;
+use RauweBieten\TwigStringyExtension;
 use Slim\Http\Uri;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
@@ -57,7 +57,7 @@ return [
                 'auto_reload' => false,
             ])
         ->method('addExtension', get(TwigExtension::class))
-        ->method('addExtension', get(StringyExtension::class)),
+        ->method('addExtension', get(TwigStringyExtension::class)),
 
     // controller classes
     Homepage::class => autowire(),
