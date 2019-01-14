@@ -22,26 +22,16 @@ class TwigFactory
      */
     private $applicationPath;
 
-    /**
-     * @Inject()
-     * @var Config
-     */
-    private $config;
-
     public function __invoke()
     {
         $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
         $extension = new TwigExtension($this->router, $uri);
 
-        $templatePath = $this->applicationPath . '/resources/templates';
-        $view = new Twig($templatePath, [
+        $view = new Twig($this->applicationPath . '/resources/templates', [
             'cache' => $this->applicationPath . '/storage/cache/twig',
             'auto_reload' => true,
         ]);
         $view->addExtension($extension);
-
-        $view->getEnvironment()->addGlobal('applicationName', $this->config->get('application.name'));
-        $view->getEnvironment()->addGlobal('applicationContactEmail', $this->config->get('application.contact_email'));
 
         return $view;
     }
